@@ -1,0 +1,20 @@
+<h1>Welcome to the book store!</h1>
+
+  <% if administrator_signed_in? then %>
+  <ul>
+    <li><%= link_to 'Manage users', users_path %></li>
+    <li><%= link_to 'Manage books', books_path %></li>
+    <li><%= link_to 'Manage wishlists', wishlists_path %></li>
+  </ul>
+  <% else %>
+  <ul>
+  	<li><%= link_to 'Show books', books_path %></li>
+  </ul>
+  <% end %>	
+  <p>
+<% if session[:wishlist_id].nil? then %>
+  <%= link_to 'Start a wishlist', new_wishlist_path %>
+<% else %>
+  <%= link_to 'Continue wishing', wishlist_path(session[:wishlist_id]) %>
+<% end %>
+</p>
